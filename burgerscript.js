@@ -68,5 +68,5 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     let burgerDisplay = document.getElementById('burger-display');
     burgerDisplay.innerText = '';
     burgerDisplay.innerHTML = '';
-    alert("Cleanup complete! Make a new burger.");
+    alert("Serving complete! Make a new burger!");
 });
