@@ -1,0 +1,406 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Krabby Patty';
+    src: url('font/Krabby\ Patty.ttf') format('truetype');
+}
+
+/* Apply a Full-Screen Background to All Sections */
+body, #section1, #section2, #section3 {
+    cursor: url('image/mousecursor2.png') 16 16, auto;
+    font-family: 'Krabby Patty', sans-serif;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #87CEEB; /* Base color */
+    background-image: url('image/flowersky.png'); /* Sky image */
+    background-repeat: no-repeat; /* No repeating */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center top; /* Keeps the sky aligned properly */
+    background-attachment: fixed; /* Makes sure the sky stays in place while scrolling */
+}
+
+/* Additional Fix: Ensure Sections Have Proper Height */
+.section {
+    width: 100%;
+    min-height: 100vh; /* Ensures each section fills the screen */
+    position: relative;
+}
+
+#section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+#section2 {
+    height: 500vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    position: relative;
+    background-color: #87CEEB; 
+    overflow: hidden; 
+}
+
+#section3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+
+.horizontal-scroll-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+
+.story-text {
+    position: absolute;
+    font-size: 24px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 20px 40px;
+    white-space: normal;
+    max-width: 400px;
+    min-width: 300px;
+    opacity: 0;
+    transform: translateX(100vw) scale(0.8);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.bubble {
+    position: fixed;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.story-text.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+h1 {
+    font-size: 48px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+    transform: translateY(0);
+    transition: transform 0.5s ease;
+}
+
+.spongebob-image {
+    position: absolute;
+    bottom: 30px;
+    left: 20px; 
+    width: 450px; 
+    height: auto; 
+    object-fit: contain;
+    transform: scaleX(-1);
+}
+
+.logo-container {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    z-index: 1;
+    animation: bounceIn 1s ease-out;
+}
+
+.logo-panel {
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.welcome-text {
+    font-family: 'Krabby Patty', sans-serif;
+    font-size: 5.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff45c;
+    text-shadow: 
+        -3px -3px 0 #0080c4,
+        3px -3px 0 #0080c4,
+        -3px 3px 0 #0080c4,
+        3px 3px 0 #0080c4,
+        -3px 0 0 #0080c4,
+        3px 0 0 #0080c4,
+        0 -3px 0 #0080c4,
+        0 3px 0 #0080c4,
+        0 0 10px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+/* 음악 토글 버튼 */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* 진행 상태 표시기 */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background: #FFD700;
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+.road-container {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 93%;
+    background: url('image/road.png') repeat-x bottom;
+    background-size: contain;
+    z-index: 5;
+    animation: moveRoad 5s linear infinite;
+    transition: transform 5s ease-out;
+}
+
+.final-road {
+    position: fixed;
+    display: block;
+    bottom: 0;
+    right: -100%;
+    width: 100vw; /* 전체 화면 너비 */
+    height: 100vh; /* 전체 화면 높이 */
+    background: url('image/krustykrab.png') no-repeat center center; /* 배경 이미지 설정 */
+    background-size: contain; /* 이미지가 화면 전체를 덮도록 */
+    background-position: center bottom;
+    z-index: 5;
+    opacity: 1; /* 처음에는 안 보이게 */
+    transition: right 5s ease-in-out;
+}
+
+.walking-spongebob {
+    position: absolute;
+    bottom: 80px;
+    left: 10%;
+    width: 450px;
+    height: auto;
+    z-index: 10;
+    animation: wiggle 0.4s infinite ease-in-out alternate;
+    transition: transform 2s ease-out, opacity 1s ease-out;
+}
+
+
+/* 🚧 집게리아가 섹션2에서 안 보이도록 hidden 클래스 추가 */
+.final-road.hidden {
+    display: none !important;
+    opacity: 0;
+}
+
+
+.walking-spongebob.move-to-krusty {
+    left: 85%;
+    transition: left 5s linear;
+}
+
+.walking-spongebob.fade-out {
+    opacity: 0;
+    transition: opacity 2s ease-out;
+}
+
+
+/* Animations */
+@keyframes bounceIn {
+    0% {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -40%);
+    }
+    80% {
+        transform: translate(-50%, -55%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes rain {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 50px #FFD700; }
+    100% { box-shadow: 0 0 100px #FFD700; }
+}
+
+@keyframes moveRoad {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(-2deg) scale(1.05); }
+    100% { transform: rotate(2deg) scale(1); }
+}
+
+/* 트랜지션 관련 클래스 */
+.transitioning {
+    transition: all 2s ease-out;
+}
+
+.move-left {
+    transform: translateX(-100%);
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .story-text {
+        font-size: 18px;
+        max-width: 300px;
+    }
+
+    .walking-spongebob {
+        width: 250px;
+    }
+
+    .music-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* 🔺 3D 회전하는 빨간색 화살표 */
+.arrow-indicator {
+    position: fixed;
+    top: 50%; /* 더 아래로 이동 */
+    left: 70%; /* 더 오른쪽으로 이동 */
+    width: 120px; /* 크기 증가 */
+    height: 120px; /* 크기 증가 */
+    background: url('image/red-arrow.png') no-repeat center center;
+    background-size: contain;
+    z-index: 20;
+    opacity: 0;
+    animation: arrowBounceRotate 2s infinite ease-in-out;
+    pointer-events: none;
+    right: 10%; /* 초기 위치를 화면 바깥으로 */
+    transition: opacity 1s ease-in-out; /* final-road와 같은 트랜지션 */
+}
+
+/* Updated bounce animation */
+@keyframes arrowBounceRotate {
+    0% {
+        transform: translateY(0) rotateY(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotateY(90deg);
+    }
+    50% {
+        transform: translateY(0) rotateY(180deg);
+    }
+    75% {
+        transform: translateY(-10px) rotateY(270deg);
+    }
+    100% {
+        transform: translateY(0) rotateY(360deg);
+    }
+}
+
+/* Show arrow when visible class is added */
+.arrow-indicator.visible {
+    opacity: 1;  /* display: block 대신 opacity 사용 */
+    right: 5%;
+}
+
+.krusty-krab-overlay {
+    position: fixed;
+    bottom: 0;  /* 바닥부터 시작 */
+    right: -100%;
+    width: 500px;  /* 너비 증가 */
+    height: 80vh;  /* 높이를 화면 높이의 80%로 설정 */
+    z-index: 15;
+    cursor: pointer;
+    transition: right 1s ease-in-out;
+    background: transparent;
+}
+
+.krusty-krab-overlay.visible {
+    right: 0%; /* 집게리아 위치에 맞게 조정 */
+}

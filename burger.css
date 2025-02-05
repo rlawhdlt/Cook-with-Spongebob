@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Krabby Patty';
+    src: url('font/KrabbyPatty.ttf') format('truetype');
+}
+
+body {
+    cursor: url('image/mousecursor1.png') 16 16, auto;
+    font-family: 'Krabby Patty', sans-serif;
+    text-align: center;
+    background: url('image/grill-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #ffcc00;
+    font-size: 2.5em;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.top-bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5); /* Reduced opacity */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ingredients label {
+    margin: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#burger-display {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#burger-display p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #d32f2f;
+    margin-top: 0;
+}
+
+#burger-display img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+.bottom-bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5); /* Reduced opacity */
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #e74c3c;
+}
+
+#exit-btn {
+    position: fixed;
+    top: 65px;
+    left: 10px;
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#exit-btn:hover {
+    background-color: #e74c3c;
+}

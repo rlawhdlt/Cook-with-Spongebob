@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpongeBob's Burger Maker</title>
+    <link rel="stylesheet" href="burger.css">
+</head>
+<body>
+    <h1>Here is An Order!!</h1>
+    
+    <div class="top-bar">
+        <div class="ingredients">
+            <label><input type="checkbox" class="ingredient" value="bun"> Bun</label>
+            <label><input type="checkbox" class="ingredient" value="bun"> Bun (Extra)</label>
+            <label><input type="checkbox" class="ingredient" value="patty"> Patty</label>
+            <label><input type="checkbox" class="ingredient" value="patty"> Patty (Extra)</label>
+            <label><input type="checkbox" class="ingredient" value="cheese"> Cheese</label>
+            <label><input type="checkbox" class="ingredient" value="cheese"> Cheese (Extra)</label>
+            <label><input type="checkbox" class="ingredient" value="lettuce"> Lettuce</label>
+            <label><input type="checkbox" class="ingredient" value="tomato"> Tomato</label>
+            <label><input type="checkbox" class="ingredient" value="onion"> Onion</label>
+            <label><input type="checkbox" class="ingredient" value="chicken"> Chicken</label>
+            <label><input type="checkbox" class="ingredient" value="shrimp"> Shrimp</label>
+            <label><input type="checkbox" class="ingredient" value="crab"> Crab Meat</label>
+            <label><input type="checkbox" class="ingredient" value="veggie"> Veggie Patty</label>
+        </div>
+    </div>
+    <button id="exit-btn" onclick="window.location.href='index.html'">⬅ Back to Main Page</button>
+    <div class="burger-display" id="burger-display"></div>
+    
+    <div class="bottom-bar">
+        <button id="make-burger">Make Burger</button>
+        <button id="reset-btn">Clean Up</button>
+    </div>
+    
+    <script src="burgerscript.js"></script>
+</body>
+</html>
